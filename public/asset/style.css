@@ -58,3 +58,61 @@ form .icon_del{
 .page-header small{
     padding-left:10px;
 }
+
+/*Login*/
+#components-form-demo-normal-login .login-form {
+    max-width: 300px;
+}
+#components-form-demo-normal-login .login-form-forgot {
+    float: right;
+}
+#components-form-demo-normal-login .login-form-button {
+    width: 100%;
+}
+.ant-form-item-children span.padd{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+input.ant-input {
+    /*width:35%;*/
+}
+#login-page{
+    /*background:#dfe6e9;*/
+    background: rgb(0,168,197);
+    background: linear-gradient(90deg, rgba(0,168,197,1) 0%, rgba(255,255,126,1) 100%);
+    width:100vw;
+    height: 100vh;
+}
+
+.panel-default>.panel-heading{
+    background: rgb(0,168,197);
+    background: linear-gradient(90deg, rgba(0,168,197,1) 0%, rgba(255,255,126,1) 100%);
+    /*width: 35%;*/
+    border-color: rgba(0,168,197,0.2);
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Roboto Condensed';
+    padding:20px 0px;
+    color:#fff;
+
+}
+.panel , .panel-default{
+    border-color: #fff!important;
+}
+.wp-inner.login{
+    padding:100px 0px;
+    width:35%;
+    margin:0px auto;
+}
+.login-form-button{
+    width:30%;
+}
+a.register, a.login-form-forgot{
+    color: #0984e3;
+    transition: color 0.2s linear;
+}
+a.register:hover , a.login-form-forgot:hover{
+    text-decoration: underline;
+    color: #e67e22;
+    transition: color 0.2s linear;
+}

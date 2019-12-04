@@ -1,23 +1,47 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
-import { Table,Button  } from 'antd';
+import { Table,Button ,Popconfirm , message } from 'antd';
 class ListUser extends Component {
     state = {
         users: [],
     };
 
+    // Get all users
     componentDidMount() {
         axiosInstance.get(`/admin/list`)
             .then((response) => {
                 this.setState({
-                    users: response.data.data
+                    users: response.data.data.data
                 });
             })
             .catch((error) => {
                 console.log(error);
             });
     }
+
+    // Handle delete user
+    confirm = (id) => {
+        const {users} = this.state;
+        message.success('Click on Yes');
+        // if confirm delete -> Call api handle delete user
+        axiosInstance.delete(`/admin/delete/${id}`)
+            .then(response => {
+
+                if(response.data.result === 200){
+                    var listUser = users.filter((user) => (user.id !== id));
+                }
+                this.setState({
+                    users : listUser
+                });
+
+
+            });
+    };
+    // Cancel delete
+    cancel = () => {
+        message.error('Click on No');
+    };
 
     render() {
         const {users} = this.state;
@@ -46,16 +70,26 @@ class ListUser extends Component {
                 dataIndex: 'email',
                 key: 'email',
             },
+            // {
+            //     title: 'Avatar',
+            //     dataIndex: 'avatar',
+            //     key: 'avatar',
+            // },
 
             {
                 title: 'Action',
                 key: 'action',
                 render: (text, record) => (
                     <span>
-                        <Button type="danger">
-                            <Link to={`/admin/user/delete/${record.key}`}>Delete</Link>
-                        </Button>
-                        &nbsp;
+                        <Popconfirm
+                            title="Are you sure delete this task?"
+                            onConfirm={() => this.confirm(record.key)}
+                            onCancel={this.cancel}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <Button type="danger" >Delete</Button>
+                        </Popconfirm> &nbsp;
                         <Button type="primary">
                             <Link to={`/admin/user/edit/${record.key}`}>Edit</Link>
                         </Button>
@@ -70,7 +104,8 @@ class ListUser extends Component {
                 stt: index,
                 name: user.name,
                 username: user.username,
-                email: user.email
+                email: user.email,
+                // avatar: <img src={user.avatar.origin_url} style={{width:80+'px',height:80+'px'}}/>
             }
         ));
 

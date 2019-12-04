@@ -18,9 +18,9 @@ class AddUser extends Component {
     componentDidMount() {
         axiosInstance.get(`/admin/list`)
             .then((response) => {
-                console.log(response.data.data);
+                // console.log(response.data.data);
                 this.setState({
-                    users: response.data.data
+                    users: response.data.data.data
                 });
             })
             .catch((error) => {
@@ -30,11 +30,11 @@ class AddUser extends Component {
     //
 
     // Handle Input Form Change
-    onHandleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        });
-    };
+    // onHandleChange = (event) => {
+    //     this.setState({
+    //         [event.target.name]: event.target.value
+    //     });
+    // };
     // Handle Change Upload file
     handleChangeImage = (event) => {
         let fileList = [...event.fileList];
@@ -57,6 +57,7 @@ class AddUser extends Component {
     // Handle Form Submit
     onHandleSubmit = (event) => {
         event.preventDefault();
+
         // Get all email users
         var listEmail = this.state.users.map((user) =>{
             return user.email;
@@ -69,7 +70,8 @@ class AddUser extends Component {
                         message.error("Email already exists !! Please Again");
                     }
                 });
-               console.log(this.state.fileList[0].originFileObj);
+
+
                 const formData = new FormData();
                 var data= {
                     name: values.name,
@@ -83,12 +85,14 @@ class AddUser extends Component {
                 });
 
                 this.state.fileList.forEach(file=>{
+                    console.log(file);
                     formData.append('image[]',file.originFileObj);
                 });
                 
 
                 // Call Api Add user
-                axiosInstance.post(`/admin/add`,formData,{
+                axiosInstance.post(`/admin/add`,
+                    formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -97,6 +101,7 @@ class AddUser extends Component {
                     .then((response) => {
                         if (response.data.result === 200) {
                             this.props.history.push("/admin/user/index");
+                            // console.log(response);
                         }
 
                     })
@@ -138,14 +143,21 @@ class AddUser extends Component {
         };
         // Upload File
         const props = {
-            action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
             onChange: this.handleChangeImage,
             multiple: true,
         };
+
         return (
 
             <div className="container-fluid">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <h1 className="page-header">User
+                            <small>Add</small>
+                        </h1>
+                    </div>
 
+                </div>
                 <form {...formItemLayout} onSubmit={this.onHandleSubmit}>
                     <Form.Item label="Name">
                         {getFieldDecorator('name', {

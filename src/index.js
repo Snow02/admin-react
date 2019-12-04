@@ -2,13 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from "react-router-dom";
-import Routers from "./router";
+import {BrowserRouter, Route} from "react-router-dom";
+import Routers from "./routes";
 import 'antd/dist/antd.css';
+import Login from "./views/user/Login";
 // import Test from "./views/Test";
 
 ReactDOM.render(
     <BrowserRouter>
+
         <Routers />
     </BrowserRouter>,
     document.getElementById('root'));
