@@ -5,12 +5,9 @@ import * as serviceWorker from './serviceWorker';
 import {BrowserRouter, Route} from "react-router-dom";
 import Routers from "./routes";
 import 'antd/dist/antd.css';
-import Login from "./views/user/Login";
-// import Test from "./views/Test";
 
 ReactDOM.render(
     <BrowserRouter>
-
         <Routers />
     </BrowserRouter>,
     document.getElementById('root'));

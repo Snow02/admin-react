@@ -3,8 +3,10 @@ import {Link} from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import { Table,Button ,Popconfirm , message } from 'antd';
 class ListUser extends Component {
+
     state = {
         users: [],
+
     };
 
     // Get all users
@@ -109,6 +111,8 @@ class ListUser extends Component {
             }
         ));
 
+        // const resultAdd = this.props.location.state.result;
+        // console.log(resultAdd);
         return (
             <div className="container-fluid">
                 <div className="row">

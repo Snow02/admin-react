@@ -3,10 +3,12 @@ import { Form, Icon, Input, Button } from 'antd';
 import {withRouter} from "react-router";
 import axiosInstance from '../../utils/axiosInstance.js'
 
+
 class Login extends Component {
 
     onHandleSubmit = (event) => {
         event.preventDefault();
+
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 axiosInstance.post(`/admin/login`,{
@@ -14,6 +16,7 @@ class Login extends Component {
                     password : values.password,
                 })
                     .then(response => {
+                        console.log(response);
                         if(response.data.result === 200 ){
                             this.props.history.push("/admin/user/index");
                         }
@@ -25,10 +28,11 @@ class Login extends Component {
         });
     };
     render() {
+
         const { getFieldDecorator } = this.props.form;
         return (
-
             <div id="login-page">
+
                 <div className="wp-inner login">
                     <div className="panel panel-default" id="color-picker">
                         <div className="panel-heading">

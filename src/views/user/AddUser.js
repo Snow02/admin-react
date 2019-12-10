@@ -100,8 +100,11 @@ class AddUser extends Component {
                     // Response Result
                     .then((response) => {
                         if (response.data.result === 200) {
-                            this.props.history.push("/admin/user/index");
-                            // console.log(response);
+                            this.props.history.push({
+                                pathname : "/admin/user/index",
+                                result : response.data.result
+                            });
+
                         }
 
                     })

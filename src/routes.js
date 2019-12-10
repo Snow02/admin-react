@@ -13,29 +13,35 @@ import AddCategory from "./views/category/AddCategory";
 import EditCategory from "./views/category/EditCategory";
 
 import Login from "./views/user/Login";
+import PrivateRoute from "./PrivateRoute";
 
 
 const Routes = () => {
+
+
     return (
         <>
-            <Switch>
-                <Route path="/admin/login" component={Login}/>
-                <Master>
-                    {/*User*/}
-                    <Route path="/admin/user/add" component={AddUser}/>
-                    <Route path="/admin/user/index" component={ListUser}/>
-                    <Route path="/admin/user/edit/:id" component={EditUser}/>
-                    {/*Product*/}
-                    <Route path="/admin/product/index" component={ListProduct}/>
-                    <Route path="/admin/product/add" component={AddProduct}/>
-                    <Route path="/admin/product/edit" component={EditProduct}/>
-                    {/*Category*/}
-                    <Route path="/admin/category/index" component={ListCategory}/>
-                    <Route path="/admin/category/add" component={AddCategory}/>
-                    <Route path="/admin/category/edit" component={EditCategory}/>
+                <Switch>
+                    <Route path="/admin/login" exact component={Login}/>
+                    <PrivateRoute>
+                        <Master>
+                            {/*User*/}
+                            <Route path="/admin/user/add" component={AddUser}/>
+                            <Route path="/admin/user/index" component={ListUser}/>
+                            <Route path="/admin/user/edit/:id" component={EditUser}/>
+                            {/*Product*/}
+                            <Route path="/admin/product/index" component={ListProduct}/>
+                            <Route path="/admin/product/add" component={AddProduct}/>
+                            <Route path="/admin/product/edit" component={EditProduct}/>
+                            {/*Category*/}
+                            <Route path="/admin/category/index" component={ListCategory}/>
+                            <Route path="/admin/category/add" component={AddCategory}/>
+                            <Route path="/admin/category/edit" component={EditCategory}/>
 
-                </Master>
-            </Switch>
+                        </Master>
+                    </PrivateRoute>
+
+                </Switch>
         </>
     );
 };

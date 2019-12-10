@@ -78,22 +78,23 @@ input.ant-input {
 }
 #login-page{
     /*background:#dfe6e9;*/
-    background: rgb(0,168,197);
-    background: linear-gradient(90deg, rgba(0,168,197,1) 0%, rgba(255,255,126,1) 100%);
+    background: rgb(128,128,128);
+    background: linear-gradient(90deg, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
     width:100vw;
     height: 100vh;
 }
 
 .panel-default>.panel-heading{
-    background: rgb(0,168,197);
-    background: linear-gradient(90deg, rgba(0,168,197,1) 0%, rgba(255,255,126,1) 100%);
-    /*width: 35%;*/
-    border-color: rgba(0,168,197,0.2);
+    background: rgb(128,128,128);
+    background: linear-gradient(90deg, rgba(128,128,128,1) 0%, rgba(230,230,230,1) 100%);
+
+    border-color: rgba(128,128,128,0.1);
     text-align: center;
     text-transform: uppercase;
     font-family: 'Roboto Condensed';
     padding:20px 0px;
-    color:#fff;
+    color:#0984e3;
+    font-weight: bold;
 
 }
 .panel , .panel-default{
@@ -107,10 +108,7 @@ input.ant-input {
 .login-form-button{
     width:30%;
 }
-a.register, a.login-form-forgot{
-    color: #0984e3;
-    transition: color 0.2s linear;
-}
+
 a.register:hover , a.login-form-forgot:hover{
     text-decoration: underline;
     color: #e67e22;
